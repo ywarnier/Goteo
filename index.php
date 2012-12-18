@@ -38,13 +38,14 @@ spl_autoload_register(
     function ($cls) {
 
         $file = __DIR__ . '/' . implode('/', explode('\\', strtolower(substr($cls, 6)))) . '.php';
+
         $file = realpath($file);
 
         if ($file === false) {
 
             // Try in library
 //            $file = __DIR__ . '/library/' . implode('/', explode('\\', strtolower(substr($cls, 6)))) . '.php';
-            $file = __DIR__ . '/library/' . strtolower($cls) . '.php';
+                $file = __DIR__ . '/library/' . strtolower($cls) . '.php';
 //            die($cls . ' - ' . $file); //Si uso Text::get(id) no lo pilla
         }
 
@@ -66,6 +67,7 @@ set_error_handler (
     }
 
 );
+
 
 /**
  * Sesión.
@@ -114,9 +116,10 @@ try {
     }
 
     // Continue
-    try {
+
 
         $class = new ReflectionClass("Goteo\\Controller\\{$controller}");
+
 
         if (!empty($segments) && $class->hasMethod($segments[0])) {
             $method = array_shift($segments);
@@ -164,21 +167,9 @@ try {
 
         }
 
-    } catch (\ReflectionException $e) {}
-
-    throw new Error(Error::NOT_FOUND);
-
 } catch (Redirection $redirection) {
     $url = $redirection->getURL();
     $code = $redirection->getCode();
     header("Location: {$url}");
 
-} catch (Error $error) {
-
-    include "view/error.html.php";
-
-} catch (Exception $exception) {
-
-    // Default error (500)
-    include "view/error.html.php";
 }

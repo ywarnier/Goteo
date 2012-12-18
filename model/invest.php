@@ -90,7 +90,7 @@ namespace Goteo\Model {
 
                     $invest->address = $usr_address;
                 }
-                
+
                 return $invest;
         }
 
@@ -267,7 +267,7 @@ namespace Goteo\Model {
 
 
 
-        public function validate (&$errors = array()) { 
+        public function validate (&$errors = array()) {
             if (!is_numeric($this->amount))
                 $errors[] = 'La cantidad no es correcta';
                 //Text::get('validate-invest-amount');
@@ -342,8 +342,8 @@ namespace Goteo\Model {
                         ':invest'=>$this->id,
                         ':user'=>$this->user,
                         ':address'=>$this->address->address,
-                        ':zipcode'=>$this->address->zipcode, 
-                        ':location'=>$this->address->location, 
+                        ':zipcode'=>$this->address->zipcode,
+                        ':location'=>$this->address->location,
                         ':country'=>$this->address->country,
                         ':name'=>$this->address->name,
                         ':nif'=>$this->address->nif
@@ -406,7 +406,7 @@ namespace Goteo\Model {
                 INNER JOIN invest
                     ON user.id = invest.user
                 ";
-            
+
             if (!$all) {
                 $sql .= "WHERE (user.hide = 0 OR user.hide IS NULL)
                     ";
@@ -534,7 +534,7 @@ namespace Goteo\Model {
                 }
 
             }
-            
+
             return $investors;
         }
 
@@ -657,7 +657,7 @@ namespace Goteo\Model {
             } else {
                 return false;
             }
-            
+
         }
 
         /*
@@ -697,7 +697,7 @@ namespace Goteo\Model {
             $sql = "UPDATE  invest
                     SET
                         payment = :payment,
-                        charged = :charged, 
+                        charged = :charged,
                         status = 1
                     WHERE id = :id";
             if (self::query($sql, $values)) {
@@ -764,7 +764,7 @@ namespace Goteo\Model {
                         returned = :returned,
                         status = 2
                     WHERE id = :id";
-            
+
             if (self::query($sql, $values)) {
                 return true;
             } else {
@@ -965,7 +965,7 @@ namespace Goteo\Model {
                         // calcular ultimo dia de primera ronda segun la fecha de pase
                         $passtime = strtotime($passed);
                         $last_day = date('Y-m-d', \mktime(0, 0, 0, date('m', $passtime), date('d', $passtime)-1, date('Y', $passtime)));
-                        
+
                         // CASH first
                         $inv_cash = self::getList(array(
                             'methods' => 'cash',
@@ -1093,7 +1093,7 @@ namespace Goteo\Model {
                             $Data['paypal']['total']['amount'] += $Data['paypal']['second']['amount'];
                         }
 
-                        
+
                     } else {
                         $Data['note'][] = 'No se ha calculado bien el parametro $act_eq';
                     }
@@ -1108,5 +1108,5 @@ namespace Goteo\Model {
 
 
     }
-    
+
 }
