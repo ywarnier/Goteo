@@ -21,14 +21,14 @@ Set the email and pasword for the goteo root user with the following SQL sentenc
 	UPDATE user SET password = SHA1('yourpassword'), email = 'youremail' WHERE id = 'root';
 
 Modify /config.php file with the access point to the htdocs folder
-	� SITE_URL is 'http://your.intallation.site'
-	� SRC_URL is (for you and now) the same 'http://your.intallation.site'
+	� SITE_URL is 'http://your.installation.site'
+	� SRC_URL is (for you and now) the same 'http://your.installation.site'
 
-Every thing should be working fine at http://your.intallation.site
+Every thing should be working fine at http://your.installation.site
 
-You manage the contents at http://your.intallation.site/admin
+You manage the contents at http://your.installation.site/admin
 
-If you want to modify the code for your own purposses, better you read /doc/plataforma_goteo.doc (it's in spanish, apologies)
+If you want to modify the code for your own purposes, better you read /doc/plataforma_goteo.doc (it's in spanish, apologies)
 
 
 Notes
