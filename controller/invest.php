@@ -79,7 +79,7 @@ namespace Goteo\Controller {
                 }
 
                 // añadir recompensas que ha elegido
-                
+
                 $rewards = array();
                 if (isset($_POST['resign']) && $_POST['resign'] == 1) {
                     // renuncia a las recompensas, bien por el/ella
@@ -128,7 +128,9 @@ namespace Goteo\Controller {
                             break;
                         case 'paypal':
                             // Petición de preapproval y redirección a paypal
-                            if (Paypal::preapproval($invest, $errors)) {
+                            $paypal_url = Paypal::preapproval($invest, $errors);
+                            if ($paypal_url) {
+                                throw new Redirection($paypal_url);
                                 die;
                             } else {
                                 Message::Error(Text::get('invest-paypal-error_fatal'));
@@ -153,6 +155,7 @@ namespace Goteo\Controller {
 
 
         public function confirmed ($project = null, $invest = null) {
+
             if (empty($project) || empty($invest)) {
                 Message::Error(Text::get('invest-data-error'));
                 throw new Redirection('/discover', Redirection::TEMPORARY);
@@ -198,7 +201,7 @@ namespace Goteo\Controller {
             }
 
             unset($mailHandler);
-            
+
 
             // Notificación al autor
             $template = Template::get(29);
@@ -221,10 +224,6 @@ namespace Goteo\Controller {
             $mailHandler->send();
 
             unset($mailHandler);
-
-
-
-
 
             if ($confirm->method == 'paypal') {
 
