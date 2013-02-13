@@ -29,6 +29,9 @@ if (function_exists('ini_set')) {
 define('GOTEO_NODE', 'goteo');
 
 define('PEAR', GOTEO_PATH . 'library' . '/' . 'pear' . '/');
+
+define('GOTEO_PATH_LIBRARY', GOTEO_PATH . 'library'.DIRECTORY_SEPARATOR);
+
 if (function_exists('ini_set')) {
     ini_set('include_path', ini_get('include_path') . PATH_SEPARATOR . PEAR);
 } else {
@@ -78,7 +81,7 @@ define('GOTEO_MAIL_SMTP_PORT', 465);
 define('GOTEO_MAIL_SMTP_USERNAME', '');
 define('GOTEO_MAIL_SMTP_PASSWORD', '');
 
-define('GOTEO_MAIL', 'hola@goteo.org');
+define('GOTEO_MAIL', 'example@example.com');
 
 // Language
 define('GOTEO_DEFAULT_LANG', 'en');
@@ -86,8 +89,8 @@ define('GOTEO_DEFAULT_LANG', 'en');
 define('GOTEO_GETTEXT_DOMAIN', 'messages');
 
 // url
-define('SITE_URL', 'http://localhost:8888/');
-define('SRC_URL', 'http://localhost:8888/');
+define('SITE_URL', 'http://my.goteo.net/');
+define('SRC_URL', 'http://my.goteo.net/');
 
 // Cron params
 define('CRON_PARAM', '');
@@ -95,3 +98,11 @@ define('CRON_VALUE', '');
 
 // Código liberado
 define('GOTEO_FREE', true);
+
+define('GOTEO_PAYPAL_ADAPTIVE_PATH', __DIR__ . DIRECTORY_SEPARATOR.'library'.DIRECTORY_SEPARATOR.'paypal_adaptive'.DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR);
+
+//set_include_path(ini_get('include_path') . PATH_SEPARATOR . PEAR,GOTEO_PAYPAL_ADAPTIVE_PATH);
+
+ini_set('include_path', ini_get('include_path') . PATH_SEPARATOR . PEAR.":". GOTEO_PAYPAL_ADAPTIVE_PATH);
+
+define('PAYPAL_MODE', 'sandbox'); //live

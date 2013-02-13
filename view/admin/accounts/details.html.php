@@ -92,7 +92,7 @@ $user = $this['user'];
 
     <?php if ($invest->method == 'paypal') : ?>
         <?php if (!empty($invest->preapproval)) :
-            $details = Paypal::preapprovalDetails($invest->preapproval);
+            $details = Paypal::preapprovalDetails($invest);
             ?>
         <dl>
             <dt><strong>Detalles del preapproval:</strong></dt>
@@ -101,7 +101,7 @@ $user = $this['user'];
         <?php endif ?>
 
         <?php if (!empty($invest->payment)) :
-            $details = Paypal::paymentDetails($invest->payment);
+            $details = Paypal::paymentDetails($invest);
             ?>
         <dl>
             <dt><strong>Detalles del cargo:</strong></dt>
